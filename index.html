@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Travel Agent | IATA Accredited Agency in Hargeisa</title>
+    <style>
+        :root {
+            --primary-blue: #0A192F;      /* Deep midnight aviation blue */
+            --primary-light: #172A45;     /* Supporting blue */
+            --accent-gold: #D4AF37;       /* Refined metallic gold */
+            --accent-gold-hover: #AA7C11; /* Hover gold */
+            --bg-light: #F8FAFC;          /* Clean off-white background */
+            --text-dark: #1E293B;         /* Deep charcoal text */
+            --text-muted: #64748B;        /* Slate gray for secondary text */
+            --white: #FFFFFF;
+            --whatsapp-green: #25D366;
+            --brand-black: #0B0F19;       /* Sleek professional black for header & footer */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Unified Sleek Black Header */
+        header {
+            background-color: var(--brand-black);
+            color: var(--white);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .brand-title:hover {
+            color: var(--accent-gold);
+        }
+
+        .iata-accredited-tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #CBD5E1;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active-nav {
+            color: var(--accent-gold);
+        }
+
+        /* Sliding Pages Viewport */
+        .page-viewport {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: 550px;
+        }
+
+        .slide-page {
+            display: none;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .slide-page.active-slide {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Buttons & Badges */
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 14px 35px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 30px;
+            margin-bottom: 45px;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 35px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--accent-gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .service-card ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .service-card li {
+            margin-bottom: 8px;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: #F1F5F9;
+            color: var(--primary-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #E2E8F0;
+        }
+
+        /* IATA Credential Banner Box */
+        .iata-trust-box {
+            background: linear-gradient(135deg, var(--brand-black), var(--primary-light));
+            color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(11, 15, 25, 0.2);
+            border-left: 5px solid var(--accent-gold);
+        }
+
+        .iata-trust-box h3 {
+            color: var(--accent-gold);
+            margin: 0 0 8px 0;
+            font-size: 20px;
+        }
+
+        .iata-trust-box p {
+            margin: 0;
+            color: #CBD5E1;
+            font-size: 14px;
+        }
+
+        .iata-id-tag {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-gold);
+            font-size: 14px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* Booking Form */
+        .form-container {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background-color: #F8FAFC;
+            color: var(--text-dark);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        .submit-btn {
+            background-color: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .submit-btn:hover {
+            background-color: #1EBE5D;
+            transform: translateY(-2px);
+        }
+
+        .content-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        /* Floating WhatsApp Widget */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            z-index: 9999;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .floating-whatsapp svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        /* Unified Sleek Black Footer */
+        footer {
+            background-color: var(--brand-black);
+            color: var(--white);
+            padding: 50px 20px 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .footer-content {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .footer-col p {
+            color: #CBD5E1;
+            font-size: 14px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            font-size: 13px;
+            color: #94A3B8;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                justify-content: center;
+            }
+            nav a {
+                margin-left: 6px;
+                font-size: 11px;
+            }
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .iata-trust-box {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .iata-id-tag {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation (Unified Black Theme) -->
+    <header>
+        <div class="brand-container">
+            <a onclick="changeSlide('home')" class="brand-title">Universal Travel Agent</a>
+            <span class="iata-accredited-tag">IATA Accredited Passenger Agency</span>
+        </div>
+        <nav>
+            <a onclick="changeSlide('home')" id="nav-home" class="active-nav">Home</a>
+            <a onclick="changeSlide('services')" id="nav-services">Services</a>
+            <a onclick="changeSlide('hajj')" id="nav-hajj">Hajj & Umrah</a>
+            <a onclick="changeSlide('visas')" id="nav-visas">Visas</a>
+            <a onclick="changeSlide('about')" id="nav-about">About</a>
+            <a onclick="changeSlide('book')" id="nav-book">Book Flight</a>
+            <a onclick="changeSlide('contact')" id="nav-contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Sliding Pages Viewport -->
+    <div class="page-viewport">
+
+        <!-- HOME SLIDE -->
+        <div id="slide-home" class="slide-page active-slide">
+            <div style="text-align: center; padding: 40px 0 20px 0;">
+                <h1 style="color: var(--primary-blue); font-size: 38px; margin-bottom: 15px;">Your Gateway to the World from Hargeisa</h1>
+                <p style="color: var(--text-muted); font-size: 17px; max-width: 680px; margin: 0 auto 35px auto;">Accredited flight bookings, comprehensive pilgrimage packages, and professional corporate travel consultancy tailored for your journey.</p>
+                <button onclick="changeSlide('book')" class="btn-primary">Request an Official Flight Quote</button>
+            </div>
+
+            <!-- IATA Trust Verification Callout -->
+            <div class="iata-trust-box">
+                <div>
+                    <h3>Global Aviation Standards & Direct Issuance</h3>
+                    <p>Operating under international aviation frameworks with verified multi-carrier ticketing, secure fare settlements, and seamless global connections through Egal International Airport (HGA).</p>
+                </div>
+                <div class="iata-id-tag">
+                    IATA CERTIFIED<br><span style="font-size: 11px; font-weight: normal; color: #E2E8F0;">Global Compliance</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES SLIDE -->
+        <div id="slide-services" class="slide-page">
+            <h2 class="section-title">
+                <span>Professional Standards</span>
+                Our Accredited Aviation Services
+            </h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>✈️ International Ticketing</h3>
+                    <p>Instant e-ticket issuance and verified multi-segment routings with premier global carriers connecting via Hargeisa (HGA).</p>
+                    <div class="badge-container">
+                        <span class="badge">Ethiopian Airlines</span>
+                        <span class="badge">Flydubai</span>
+                        <span class="badge">Turkish Airlines</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🌍 Visa Consultancy</h3>
+                    <p>Professional documentation audit, embassy compliance guidance, and end-to-end processing support for international travel.</p>
+                    <div class="badge-container">
+                        <span class="badge">Dubai / UAE</span>
+                        <span class="badge">Turkey</span>
+                        <span class="badge">Schengen & UK Guidance</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🏢 Corporate Travel Management</h3>
+                    <p>Dedicated corporate account handling, optimized business routings, priority rebooking, and transparent invoicing.</p>
+                    <ul>
+                        <li>Corporate Credit & Billing Support</li>
+                        <li>Priority Agency Assistance</li>
+                        <li>Dedicated Account Manager</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAJJ & UMRAH SLIDE -->
+        <div id="slide-hajj" class="slide-page">
+            <h2 class="section-title">
+                <span>Spiritual Journeys</span>
+                Certified Hajj & Umrah Packages
+            </h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🕋 Complete Umrah Packages</h3>
+                    <p>Carefully curated spiritual packages featuring guaranteed flight space, verified hotel accommodations near Haram, and complete ground handling.</p>
+                    <ul>
+                        <li>Confirmed Return Airfares</li>
+                        <li>Verified 4-Star & 5-Star Hotels</li>
+                        <li>Official Visa & Insurance Processing</li>
+                        <li>On-the-ground Group Guides</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>🕋 Seasonal Hajj Guidance</h3>
+                    <p>Structured quota management, transparent travel scheduling, and comprehensive coordination for pilgrims departing from Somaliland.</p>
+                    <ul>
+                        <li>Official Quota Coordination</li>
+                        <li>Organized Transport Logistics</li>
+                        <li>Full Supervisory Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISAS SLIDE -->
+        <div id="slide-visas" class="slide-page">
+            <h2 class="section-title">
+                <span>Compliance & Documentation</span>
+                Visa Assistance & Requirements
+            </h2>
+            <div class="content-box">
+                <p>Planning international travel for commerce, education, or tourism? Ensure your documentation meets strict embassy regulations. Visit our office on Independence Road or consult with our travel specialists via WhatsApp for updated checklists.</p>
+                <a href="https://wa.me/252634176767?text=Hello%20Universal%20Travel,%20I%20would%20like%20to%20inquire%20about%20verified%20visa%20requirements." target="_blank" class="btn-primary" style="margin-top: 20px;">Consult Visa Guidelines via WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- ABOUT SLIDE -->
+        <div id="slide-about" class="slide-page">
+            <h2 class="section-title">
+                <span>Corporate Profile</span>
+                About Universal Travel Agent
+            </h2>
+            <div class="content-box" style="text-align: left; line-height: 1.8;">
+                <p>Headquartered in Hargeisa, Somaliland, <strong>Universal Travel Agent</strong> operates under stringent international travel industry standards. We specialize in bridging local commercial sectors and individual travelers to global destinations with uncompromising reliability, financial transparency, and professional accountability.</p>
+                <p style="margin-top: 15px;"><strong>Core Commitments:</strong></p>
+                <ul style="color: var(--text-muted);">
+                    <li>Strict compliance with global aviation safety and ticketing protocols.</li>
+                    <li>Transparent pricing with zero hidden intermediary fees.</li>
+                    <li>Personalized itinerary design backed by years of regional logistics expertise.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BOOK FLIGHT SLIDE -->
+        <div id="slide-book" class="slide-page">
+            <h2 class="section-title">
+                <span>Direct Booking Desk</span>
+                Instant Flight Inquiry Form
+            </h2>
+            <div class="form-container">
+                <form id="inquiryForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name (as per Passport)</label>
+                            <input type="text" id="fullName" placeholder="Enter traveler full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone / WhatsApp Number</label>
+                            <input type="tel" id="phone" placeholder="+252 ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tripType">Trip Type</label>
+                            <select id="tripType">
+                                <option value="Round-Trip">Round-Trip</option>
+                                <option value="One-Way">One-Way</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="airline">Preferred Airline</label>
+                            <select id="airline">
+                                <option value="Any">Best Available Rate (GDS)</option>
+                                <option value="Ethiopian Airlines">Ethiopian Airlines</option>
+                                <option value="Flydubai">Flydubai</option>
+                                <option value="Turkish Airlines">Turkish Airlines</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departureCity">Departure City</label>
+                            <input type="text" id="departureCity" value="Hargeisa (HGA)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destinationCity">Destination City</label>
+                            <input type="text" id="destinationCity" placeholder="e.g. Dubai, Istanbul, Nairobi" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departureDate">Departure Date</label>
+                            <input type="date" id="departureDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="returnDate">Return Date (Optional)</label>
+                            <input type="date" id="returnDate">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <button type="submit" class="submit-btn">Transmit Inquiry to Booking Desk</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- CONTACT SLIDE -->
+        <div id="slide-contact" class="slide-page">
+            <h2 class="section-title">
+                <span>Official Contact</span>
+                Office Location & Operating Hours
+            </h2>
+            <div class="content-box">
+                <p><strong>Universal Travel Agent</strong></p>
+                <p>Independence Road, Hargeisa, Somaliland<br>Corporate Direct Line: +252 63 4176767</p>
+                <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 20px 0;">
+                <p><strong>Service Hours:</strong> Saturday – Thursday: 8:00 AM – 6:00 PM<br><span style="color: #EF4444;">Friday: Closed</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Action Button -->
+    <a href="https://wa.me/252634176767" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32"><path d="M16 2a14 14 0 0 0-12 21.35L2 30l6.85-1.9A14 14 0 1 0 16 2m0 25.5a11.5 11.5 0 0 1-5.88-1.61l-.42-.25-4.38 1.21 1.22-4.27-.27-.44A11.5 11.5 0 1 1 16 27.5m6.3-8.62c-.34-.17-2.02-1-2.34-1.11-.32-.11-.56-.17-.79.17s-.9 1.11-1.1 1.34c-.2.23-.41.26-.75.09a9.5 9.5 0 0 1-2.8-1.73 10.5 10.5 0 0 1-1.94-2.4c-.21-.35-.02-.54.15-.71.15-.15.34-.41.51-.62.17-.21.23-.35.34-.58.11-.23.06-.43-.03-.6-.09-.17-.79-1.9-1.08-2.6-.29-.68-.58-.59-.79-.6l-.68-.01c-.23 0-.6.09-.92.43-.32.34-1.22 1.19-1.22 2.91s1.25 3.38 1.42 3.62c.17.23 2.45 3.75 5.94 5.25.83.36 1.48.58 1.99.74.84.27 1.6.23 2.21.14.68-.1 2.02-.83 2.3-1.63.28-.8.28-1.48.2-1.63-.08-.15-.31-.24-.65-.41"/></svg>
+    </a>
+
+    <!-- Footer (Unified Black Theme) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Universal Travel Agent</h4>
+                <p>Independence Road, Hargeisa, Somaliland<br>Phone: +252 63 4176767</p>
+            </div>
+            <div class="footer-col">
+                <h4>Aviation Standards</h4>
+                <p>Complying with international passenger standards, secure ticketing guidelines, and reliable agency practice.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Accepted Local Payments</h4>
+                <div class="badge-container" style="justify-content: flex-start; margin-top: 5px;">
+                    <span class="badge" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">Premier Wallet</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">Darasalaam Bank</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">Cash</span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Universal Travel Agent. All rights reserved. Registered Passenger Agency.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Sliding Views & WhatsApp Redirect -->
+    <script>
+        function changeSlide(slideId) {
+            const slides = document.getElementsByClassName('slide-page');
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active-slide');
+            }
+
+            const navLinks = document.querySelectorAll('nav a');
+            for (let i = 0; i < navLinks.length; i++) {
+                navLinks[i].classList.remove('active-nav');
+            }
+
+            document.getElementById('slide-' + slideId).classList.add('active-slide');
+            const targetNav = document.getElementById('nav-' + slideId);
+            if (targetNav) {
+                targetNav.classList.add('active-nav');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // WhatsApp Form Handler
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const tripType = document.getElementById('tripType').value;
+            const airline = document.getElementById('airline').value;
+            const depCity = document.getElementById('departureCity').value;
+            const destCity = document.getElementById('destinationCity').value;
+            const depDate = document.getElementById('departureDate').value;
+            const retDate = document.getElementById('returnDate').value || 'N/A';
+
+            const agentWhatsAppNumber = "252634176767"; 
+            const message = `Hello Universal Travel Agent,%0A%0A*Official Flight Booking Inquiry*%0A- Traveler Name: ${name}%0A- Phone: ${phone}%0A- Trip Type: ${tripType}%0A- Route: ${depCity} to ${destCity}%0A- Departure Date: ${depDate}%0A- Return Date: ${retDate}%0A- Preferred Airline: ${airline}`;
+            
+            window.open(`https://wa.me/${agentWhatsAppNumber}?text=${message}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
